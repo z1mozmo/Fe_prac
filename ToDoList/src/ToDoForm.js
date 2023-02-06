@@ -1,28 +1,31 @@
-function ToDoForm( {$target} ) {
-  //입력받을 form을 생성한다.
-  const $form = document.createElement('form');
+function ToDoForm({ $target, onSubmit }) {
+    const $form = document.createElement('form');
+    $target.appendChild($form);
+  
+    let isInit = false;
 
-  //선택한 $form을 $target에 불여준다.
-  $target.appendChild($form);
+    this.render = () => {
+      $form.innerHTML = `
+        <input type = 'text' name = 'todo' />
+        <button>Add</button>
+      `
 
-  let isInit = false 
+      if (!isInit) {
+        $form.addEventListener('submit', e => {
+          e.preventDefault()
+        
+          const $todo = $form.querySelector('input[name=todo]')
+          const text = $todo.value
 
-  this.render = () => {
-    $form.innerHTML = `
-      <input type = 'text' name = 'todo' />
-      <button>Add</button>
-    `
-    if (!isinit) { //true일 때만 실행하도록, 즉 맨 처음에만 작동
-      $form.addEventListener('submit', e => {
-        //preventDefault(): 태그의 고유 기능을 끄는 코드
-        //여기서는 form 태그의 기본 새로고침 기능을 끈다.
-        e.preventDefault()
-      
-        const text = $form.querySelector('input[name=todo').value
-      })
-      isInit = true; //true로 바꿔주면 이후부턴 if문의 명령이 동작하지 않는다.
+          if (text.length > 1) { //입력된 값이 최소 두 글자일 때
+            $todo.value = '' //input 창에 입력된 값을 비워준다.
+            onSubmit(text);
+          }
+        })
+        isInit = true;
+      }
     }
+  
+    this.render()
   }
 
-  this.render() //마지막으로 render 함수를 호출
-}
