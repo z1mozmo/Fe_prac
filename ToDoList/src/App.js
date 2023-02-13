@@ -1,4 +1,9 @@
-function App ({ $target, initialState }) {
+import Header from "./Header.js"
+import ToDoForm from "./ToDoForm.js"
+import ToDoList from "./ToDoList.js"
+import { setItem } from "./storage.js"
+
+export default function App ({ $target, initialState }) {
     new Header({
         $target,
         text: 'Simple ToDo List'
@@ -11,8 +16,9 @@ function App ({ $target, initialState }) {
                 text
             }]
             todoList.setState(nextState)
-
-            storage.setItem('todos',JSON.stringify(nextState))
+            
+            //변경 전: storage.setItem('todos',JSON.stringify(nextState))
+            setItem('todos',JSON.stringify(nextState))
         }
     })
     

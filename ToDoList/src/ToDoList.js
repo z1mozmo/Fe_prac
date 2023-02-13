@@ -1,4 +1,4 @@
-function ToDoList({ $target, initialState }) {
+export default function ToDoList({ $target, initialState }) {
     const $todoList = document.createElement('div');
    
     $target.appendChild($todoList);
