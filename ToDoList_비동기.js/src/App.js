@@ -9,7 +9,6 @@ export default function App({ $app }) {
     comments: []
   }
 
-
   const setState = nextState => {
     this.state = nextState
     todoList.setState(this.state.todos)
@@ -18,7 +17,6 @@ export default function App({ $app }) {
       comments: this.state.comments
     })
   }
-
 
   const todoList = new ToDoList({
     $target: $app,
