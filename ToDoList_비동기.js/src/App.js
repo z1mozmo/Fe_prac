@@ -7,6 +7,7 @@ export default function App({ $app }) {
     todos: [] ,
     selectedTodo: null,
     comments: []
+<<<<<<< HEAD
   }
 
   const setState = nextState => {
@@ -16,7 +17,20 @@ export default function App({ $app }) {
       selectedTodo: this.state.selectedTodo,
       comments: this.state.comments
     })
+=======
+>>>>>>> fb49048476b363c761d4430480f615fd39bd4550
   }
+
+
+  const setState = nextState => {
+    this.state = nextState
+    todoList.setState(this.state.todos)
+    todoComments.setState({
+      selectedTodo: this.state.selectedTodo,
+      comments: this.state.comments
+    })
+  }
+
 
   const todoList = new ToDoList({
     $target: $app,
